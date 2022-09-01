@@ -13,8 +13,8 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var movieYearLabel: UILabel!
     
-    func setup(title: String, year: Int) {
-        movieTitleLabel.text = title
-        movieYearLabel.text = "\(year)"
+    func setup(with data: Movie) {
+        movieTitleLabel.text = data.title
+        movieYearLabel.text = "\(data.year)"
     }
 }

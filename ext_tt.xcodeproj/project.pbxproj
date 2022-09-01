@@ -15,6 +15,7 @@
 		116C85B128C0A07700345FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116C85AF28C0A07700345FB0 /* LaunchScreen.storyboard */; };
 		116C85BA28C0A37100345FB0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C85B828C0A37100345FB0 /* CustomTableViewCell.swift */; };
 		116C85BB28C0A37100345FB0 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 116C85B928C0A37100345FB0 /* CustomTableViewCell.xib */; };
+		116C85DE28C0BB7200345FB0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116C85DD28C0BB7200345FB0 /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		116C85B228C0A07700345FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		116C85B828C0A37100345FB0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		116C85B928C0A37100345FB0 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		116C85DD28C0BB7200345FB0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				116C85A428C0A07500345FB0 /* AppDelegate.swift */,
 				116C85A628C0A07500345FB0 /* SceneDelegate.swift */,
 				116C85A828C0A07500345FB0 /* ViewController.swift */,
+				116C85DD28C0BB7200345FB0 /* Movie.swift */,
 				116C85AA28C0A07500345FB0 /* Main.storyboard */,
 				116C85AD28C0A07700345FB0 /* Assets.xcassets */,
 				116C85AF28C0A07700345FB0 /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 				116C85A528C0A07500345FB0 /* AppDelegate.swift in Sources */,
 				116C85BA28C0A37100345FB0 /* CustomTableViewCell.swift in Sources */,
 				116C85A728C0A07500345FB0 /* SceneDelegate.swift in Sources */,
+				116C85DE28C0BB7200345FB0 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

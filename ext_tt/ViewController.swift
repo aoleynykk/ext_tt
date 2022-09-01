@@ -15,24 +15,28 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var moviesTableView: UITableView!
     
-    var movieTitles: [String] = []
+    var movies: Set<Movie> = []
     
-    var movieYears: [Int] = []
+    var id: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
+        
     }
     
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        id += 1
         if movieTitleTextField.text != "" && movieYearTextField.text != "" {
-            if movieTitles.contains(movieTitleTextField.text!) {
+            if movies.contains(where: { movie in
+                let movieYear = NSString(string: movieYearTextField.text!).intValue
+                return movie.title == movieTitleTextField.text! && movie.year == Int(movieYear)
+            }) {
                 makeAlert(alerTitle: "Error", message: "The Table already contains such movie!", buttonTitle: "Try Again")
             } else {
-                movieTitles.append(movieTitleTextField.text!)
                 let movieYear = NSString(string: movieYearTextField.text!).intValue
-                movieYears.append(Int(movieYear))
+                movies.insert(Movie(id: id, title: movieTitleTextField.text!, year: Int(movieYear)))
                 movieTitleTextField.text = ""
                 movieYearTextField.text = ""
             }
@@ -56,12 +60,15 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movieTitles.count
+        movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = moviesTableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as? CustomTableViewCell else { return UITableViewCell() }
-        cell.setup(title: movieTitles[indexPath.row], year: movieYears[indexPath.row])
-        return cell
+        if let cell = moviesTableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as? CustomTableViewCell {
+            let movie = movies.sorted(by: {$0 < $1})[indexPath.row]
+            cell.setup(with: movie)
+            return cell
+        }
+        return UITableViewCell()
     }
 }
