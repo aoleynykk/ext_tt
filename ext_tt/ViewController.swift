@@ -15,14 +15,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var moviesTableView: UITableView!
     
-    var movies: Set<Movie> = []
+    var movies: NSMutableOrderedSet = []
     
     var id: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moviesTableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
-        
     }
     
     
@@ -31,21 +30,20 @@ class ViewController: UIViewController {
         if movieTitleTextField.text != "" && movieYearTextField.text != "" {
             if movies.contains(where: { movie in
                 let movieYear = NSString(string: movieYearTextField.text!).intValue
-                return movie.title == movieTitleTextField.text! && movie.year == Int(movieYear)
+                return (movie as! Movie).title == movieTitleTextField.text! && (movie as! Movie).year == Int(movieYear)
             }) {
                 makeAlert(alerTitle: "Error", message: "The Table already contains such movie!", buttonTitle: "Try Again")
             } else {
                 let movieYear = NSString(string: movieYearTextField.text!).intValue
-                movies.insert(Movie(id: id, title: movieTitleTextField.text!, year: Int(movieYear)))
+                movies.add(Movie(id: id, title: movieTitleTextField.text!, year: Int(movieYear)))
+                let indexPaths = IndexPath(row:(movies.count - 1), section: 0)
+                moviesTableView.insertRows(at: [indexPaths], with: .left)
                 movieTitleTextField.text = ""
                 movieYearTextField.text = ""
             }
         }
         else {
             makeAlert(alerTitle: "Error", message: "Not all fields are filled!", buttonTitle: "Try Again")
-        }
-        DispatchQueue.main.async {
-            self.moviesTableView.reloadData()
         }
     }
     
@@ -65,8 +63,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = moviesTableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as? CustomTableViewCell {
-            let movie = movies.sorted(by: {$0 < $1})[indexPath.row]
-            cell.setup(with: movie)
+            cell.setup(with: movies[indexPath.row] as! Movie)
             return cell
         }
         return UITableViewCell()
