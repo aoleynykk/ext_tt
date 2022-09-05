@@ -32,7 +32,7 @@ class ViewController: UIViewController {
                 let movieYear = NSString(string: movieYearTextField.text!).intValue
                 return (movie as! Movie).title == movieTitleTextField.text! && (movie as! Movie).year == Int(movieYear)
             }) {
-                makeAlert(alerTitle: "Error", message: "The Table already contains such movie!", buttonTitle: "Try Again")
+                makeAlert(alertTitle: "Error", message: "The Table already contains such movie!", buttonTitle: "Try Again")
             } else {
                 let movieYear = NSString(string: movieYearTextField.text!).intValue
                 movies.add(Movie(id: id, title: movieTitleTextField.text!, year: Int(movieYear)))
@@ -43,12 +43,12 @@ class ViewController: UIViewController {
             }
         }
         else {
-            makeAlert(alerTitle: "Error", message: "Not all fields are filled!", buttonTitle: "Try Again")
+            makeAlert(alertTitle: "Error", message: "Not all fields are filled!", buttonTitle: "Try Again")
         }
     }
     
-    private func makeAlert(alerTitle: String, message: String, buttonTitle: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    private func makeAlert(alertTitle: String, message: String, buttonTitle: String) {
+        let alertController = UIAlertController(title: alertTitle, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: buttonTitle, style: .default) { _ in }
         alertController.addAction(action)
         self.present(alertController, animated: true)
